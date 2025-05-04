@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #000 !important;
+}
+  df-messenger {
+    --df-messenger-bot-message: #e0f2fe;
+    --df-messenger-button-titlebar-color: #1e40af; /* Top bar color */
+    --df-messenger-button-titlebar-font-color: #ffffff;
+    --df-messenger-chat-background-color: #ffffff;
+    --df-messenger-user-message: #c7d2fe;
+    --df-messenger-font-color: #111827;
+    --df-messenger-send-icon: #1d4ed8;
+    --df-messenger-input-box-color: #f3f4f6;
+    --df-messenger-input-font-color: #111827;
+    --df-messenger-input-placeholder-font-color: #6b7280;
+  }
+
+  df-messenger {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
