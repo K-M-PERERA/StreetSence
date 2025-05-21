@@ -11,6 +11,7 @@ import ReceivedReports from './pages/ReceivedReports';
 import ManageReportsTabs from './pages/ManageReportsTabs';
 import Home from './pages/Home';
 import Register from './pages/Register';
+import Profile2 from './pages/profile2';
 
 function App() {
   return (
@@ -21,15 +22,14 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile2" element={<Profile2 />} />
         <Route path="/submit" element={<SubmitIssue />} />
         <Route path="/issues-map" element={<ReportedIssuesMap />} />
         <Route path="/my-reports" element={<MyReports />} />
-
-
         <Route path="/admin-reports" element={<ReceivedReports />} />
         <Route path="/reportinfo" element={<ManageReportsTabs />} />
         <Route path="/admin" element={<AdminDashboard />} />
-  
+
       </Routes>
     </Router>
   );

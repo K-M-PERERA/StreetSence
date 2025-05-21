@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { getDoc, doc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -23,12 +24,16 @@ export default function Login() {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const redirectUser = (email, password) => {
-    if (email === 'admin' && password === 'admin') {
-      navigate('/admin');
-    } else {
-      navigate('/dashboard');
-    }
+  const checkUserProfile = async (uid) => {
+    const docRef = doc(db, 'users', uid);
+    const snap = await getDoc(docRef);
+    const data = snap.exists() ? snap.data() : null;
+    return data?.mobile;
+  };
+
+  const setLanguage = (value) => {
+    localStorage.setItem('language', value);
+    location.reload();
   };
 
   const handleEmailLogin = async (e) => {
@@ -40,8 +45,9 @@ export default function Login() {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      navigate('/dashboard');
+      const userCred = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      const hasMobile = await checkUserProfile(userCred.user.uid);
+      navigate(hasMobile ? '/dashboard' : '/profile2');
     } catch (err) {
       setError(err.message);
     }
@@ -51,7 +57,8 @@ export default function Login() {
     const provider = new GoogleAuthProvider();
     try {
       const userCred = await signInWithPopup(auth, provider);
-      redirectUser(userCred.user.email, '');
+      const hasMobile = await checkUserProfile(userCred.user.uid);
+      navigate(hasMobile ? '/dashboard' : '/profile2');
     } catch (err) {
       setError(err.message);
     }
@@ -102,6 +109,22 @@ export default function Login() {
 
         <div className='mt-4 text-center text-sm text-gray-600'>
           {txt.register} <Link to="/register" className='text-blue-600 hover:underline'>{isSinhala ? "ලියාපදිංචි වන්න" : "Register"}</Link>
+        </div>
+
+        {/* ✅ Language Toggle Buttons */}
+        <div className="flex justify-center mt-6 gap-3">
+          <button
+            onClick={() => setLanguage('en')}
+            className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+          >
+            English
+          </button>
+          <button
+            onClick={() => setLanguage('0')}
+            className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+          >
+            සිංහල
+          </button>
         </div>
 
         {error && (
