@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "streetsense-b945c",
+    "build": "streetsense-b945c"
+  },
+  "targets": {},
+  "etags": {}
+}

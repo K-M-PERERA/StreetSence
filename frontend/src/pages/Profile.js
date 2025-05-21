@@ -60,7 +60,7 @@ const Profile = () => {
     }
     setEditing(false);
   };
-
+  
   const handleLogout = async () => {
     await signOut(auth);
     localStorage.clear();
@@ -100,7 +100,7 @@ const Profile = () => {
               />
             </div>
           ))}
-
+          
           <div className="flex justify-end gap-4">
             <button
               onClick={toggleEdit}
