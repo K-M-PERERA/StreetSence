@@ -71,14 +71,4 @@ service cloud.firestore {
 🌐 Live Demo
 
 You can view the project live at:
-https://streetsense-client.vercel.app
-(Update this link with your actual deployed URL if different.)
-
-👨‍💻 Contributors
-
-- @yourusername
-- @teammember
-
-📄 License
-
-This project is licensed under the MIT License. Feel free to use and modify it for your needs.
+https://streetsense-b945c.web.app/
