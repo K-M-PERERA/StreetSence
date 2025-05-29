@@ -25,7 +25,7 @@ StreetSense is a smart community platform built to help citizens report, track, 
 📦 How to Run Locally
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/streetsense.git
+   git clone https://github.com/K-M-PERERA/streetsense.git
    cd streetsense
 
 2. Install dependencies:
